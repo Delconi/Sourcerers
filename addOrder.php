@@ -11,7 +11,7 @@ checkLogin();	//Checking if User is logged in before continuing//?>
 ************************************************************************
 Sourcerers
 Copyright (c) 2013 Del, Jordon Koh, Low Guan Hong
-Released under the GNU General Public License
+Released under the GNU General Public License version 3
 
 This file is part of Sourcerers
 
