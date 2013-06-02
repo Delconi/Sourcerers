@@ -1,4 +1,4 @@
-<?php include ("connect.php");  //Addin from connect.php
+<?php include ("connect.php");	//Addin from connect.php
 checkLogin();	//Checking if User is logged in before continuing//?>
 <html>
 <head>
@@ -154,11 +154,6 @@ if (!empty($_GET['dTax'])){
 	}else{echo "0";}?>" /></div>
 <div id = "formText">Total Cost</div>
 <div id = "formInput"><input id = "pTotal" type = "text" value = "" readonly="readonly"></div>
-<div id = "formText">Actual Product Price ($)</div>
-<div id = "formInput"><input type = "text" name = "pSellPrice" value ="<?php 
-if (!empty($_GET['dSell'])){
-	echo $_GET['dSell'];
-	}?>"/></div>
 <div id = "formText">Product Remarks (Optional)</div>
 <div id = "formInput"><input type = "text" name = "pRemarks" value ="<?php 
 if (!empty($_GET['dRem'])){
