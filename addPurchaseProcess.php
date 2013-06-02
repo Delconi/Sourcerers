@@ -1,5 +1,5 @@
 <?php
-include ("connect.php");  //Addin from connect.php
+include ("connect.php");	//Addin from connect.php
 
 /*
 ************************************************************************
@@ -23,7 +23,7 @@ For any enquiries, contact Del via email at magnadel@hotmail.com, Jordon Koh at 
 */
 
 checkLogin();	//Checking if User is logged in before continuing//
-$reDirect = "location:addPurchase.php?eField=1&dManu=".$_POST ["pManufacturer"]."&dPri=".$_POST["pPrice"]."&dQua=".$_POST ["pQuantity"]."&dShip=".$_POST["pShipping"]."&dTax=".$_POST["pTax"]."&dSell=".$_POST["pSellPrice"]."&dRem=".$_POST["pRemarks"]."&dDay=".$_POST["pDay"]."&dMon=".$_POST["pMonth"]."&dYear=".$_POST["pYear"]."&dNo=".$_POST ["pPNo"];
+$reDirect = "location:addPurchase.php?eField=1&dManu=".$_POST ["pManufacturer"]."&dPri=".$_POST["pPrice"]."&dQua=".$_POST ["pQuantity"]."&dShip=".$_POST["pShipping"]."&dTax=".$_POST["pTax"]."&dRem=".$_POST["pRemarks"]."&dDay=".$_POST["pDay"]."&dMon=".$_POST["pMonth"]."&dYear=".$_POST["pYear"]."&dNo=".$_POST ["pPNo"];
 
 if(empty($_POST ["pPNo"])){
 	header($reDirect.'&ePro=1');
@@ -44,13 +44,12 @@ if(empty($_POST ["pPNo"])){
 			{$pTax = 0;}else
 			{$pTax = $_POST["pTax"];}
 		$pTotalPrice = ($pPricePerPiece*$pQuantity+$pShipping)*(100+$pTax)/100;
-		$pSellPrice = $_POST["pSellPrice"];
 		$pRemarks = $_POST["pRemarks"];
 		//Receiving input from form//
 		$sessionUserName = $_SESSION['userNo'];	//Collecting User Number from Session
 		
 		//Inserting individual value into database//
-		$query = "INSERT INTO $purchaseTable($puT_PurchaseProductNumber, $puT_PurchaseDateInput, $puT_PurchaseDate, $puT_PurchaseQuantity, $puT_PurchasePrice, $puT_PurchaseShippingPrice, $puT_TotalPurchasePrice, $puT_PurchaseSalesPrice, $puT_PurchaseRemarks, $puT_PurchaseTax, $puT_PurchaseManufacturer, $puT_PurchaseUserName) VALUES ('$pProductNo', '$pDateInput', '$pDatePurchase', '$pQuantity', '$pPricePerPiece', '$pShipping', '$pTotalPrice', '$pSellPrice', '$pRemarks', '$pTax', '$pManufacturer', '$sessionUserName')";	
+		$query = "INSERT INTO $purchaseTable($puT_PurchaseProductNumber, $puT_PurchaseDateInput, $puT_PurchaseDate, $puT_PurchaseQuantity, $puT_PurchasePrice, $puT_PurchaseShippingPrice, $puT_TotalPurchasePrice, $puT_PurchaseRemarks, $puT_PurchaseTax, $puT_PurchaseManufacturer, $puT_PurchaseUserName) VALUES ('$pProductNo', '$pDateInput', '$pDatePurchase', '$pQuantity', '$pPricePerPiece', '$pShipping', '$pTotalPrice', '$pRemarks', '$pTax', '$pManufacturer', '$sessionUserName')";	
 		$result = mysqli_query($connect,$query);
 		//Inserting individual value into database//
 		
