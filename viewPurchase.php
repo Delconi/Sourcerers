@@ -1,4 +1,4 @@
-<?php include ("connect.php");  //Addin from connect.php
+<?php include ("connect.php");	//Addin from connect.php
 checkLogin();	//Checking if User is logged in before continuing//
 $sessionUserName = $_SESSION['userNo'];
 
@@ -19,7 +19,7 @@ $result = mysqli_query($connect,$query);
 ************************************************************************
 Sourcerers
 Copyright (c) 2013 Del, Jordon Koh, Low Guan Hong
-Released under the GNU General Public License
+Released under the GNU General Public License version 3
 
 This file is part of Sourcerers
 
@@ -58,7 +58,6 @@ if (isset($_GET["added"])){
         <td>Shipping</td>
         <td>Tax</td>
         <td>Total Purchase Cost</td>
-        <td>Sales Price</td>
         <td>Remarks</td>
         </b>
     </tr>
@@ -81,7 +80,6 @@ if (isset($_GET["added"])){
 		echo "<td>".$row[$puT_PurchaseShippingPrice]."</td>";
 		echo "<td>".$row[$puT_PurchaseTax]."</td>";
 		echo "<td>".$row[$puT_TotalPurchasePrice]."</td>";
-		echo "<td>".$row[$puT_PurchaseSalesPrice]."</td>";
 		echo "<td>".$row[$puT_PurchaseRemarks]."</td>";
 		echo "<td><a href = 'editPurchase.php?pId=".$row[$puT_PurchaseNumber]."'>Edit</a></td>";	//Displaying of Edit Button
 		echo "<td><a href = 'deletePurchase.php?pId=".$row[$puT_PurchaseNumber]."'>Delete</a></td>";	//Displaying of Delete Button
