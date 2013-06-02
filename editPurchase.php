@@ -1,4 +1,4 @@
-<?php include ("connect.php");  //Addin from connect.php
+<?php include ("connect.php");	//Addin from connect.php
 checkLogin();	//Checking if User is logged in before continuing//?>
 <html>
 <head>
@@ -145,14 +145,6 @@ if (!empty($_GET['dTax'])||$_GET['eField']==1){
 	}else{
 		echo $pRow[$puT_PurchaseTax];
 	}?>" /></div>
-<div id = "formText">Actual Prodct Price ($)</div>
-<div id = "formInput"><input type = "text" name = "pSellPrice" value ="<?php 
-//Displaying Value either from reset or from previously input//
-if (!empty($_GET['dSell'])||$_GET['eField']==1){
-	echo $_GET['dSell'];
-	}else{
-		echo $pRow[$puT_PurchaseSalesPrice];
-	}?>"/></div>
 <div id = "formText">Product Remarks (Optional)</div>
 <div id = "formInput"><input type = "text" name = "pRemarks" value ="<?php 
 //Displaying Value either from reset or from previously input//
