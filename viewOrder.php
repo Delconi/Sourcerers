@@ -1,5 +1,5 @@
 <?php 
-include ("connect.php");  //Addin from connect.php
+include ("connect.php");	//Addin from connect.php
 checkLogin();	//Checking if User is logged in before continuing//
 $sessionUserName = $_SESSION['userNo'];	//Retriving userno from session
 
@@ -37,6 +37,7 @@ For any enquiries, contact Del via email at magnadel@hotmail.com, Jordon Koh at 
 -->
 
 <body>
+<div id = "mainContent">
 <h1 id = "title">View all customer orders</h1>
 <?php
 if (isset($_GET["added"])){
@@ -48,16 +49,16 @@ if (isset($_GET["added"])){
 }	
 ?>
 <table>
-	<tr><b>
-		<td>Date Of Order</td>
-        <td>Customer Name</td>
-        <td>Product Name</td>
-        <td>Price Per Piece Sold</td>
-        <td>Quantity Sold</td>
-        <td>Misc Fee</td>
-        <td>Total Cost</td>
-        <td>Remarks</td>
-        </b>
+	<tr>
+		<td><b>Date</b></td>
+        <td><b>Customer</b></td>
+        <td><b>Product</b></td>
+        <td><b>Price</b></td>
+        <td><b>Quantity</b></td>
+        <td><b>Misc</b></td>
+        <td><b>Total</b></td>
+        <td><b>Remarks</b></td>
+        <td colspan = "2"><b>Option</b></td>
     </tr>
     <?php while($row = mysqli_fetch_assoc($result)){
 		?><tr><?php
@@ -85,5 +86,6 @@ if (isset($_GET["added"])){
 	?>
 </table>
 <div id = "backBtn"><a href = "index2.php">Back</a></div>
+</div>
 </body>
 </html>
