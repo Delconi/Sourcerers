@@ -1,4 +1,4 @@
-<?php include("connect.php");  //Addin from connect.php
+<?php include("connect.php");	//Addin from connect.php
 
 /*
 ************************************************************************
@@ -30,11 +30,12 @@ checkLogin(); //Checking if User is logged in before continuing//?>
 </head>
 
 <body>
+<div id = "mainContent">
 <h1 id = "title">Add a product component/product</h1>
 <?php if (isset($_GET['noPro'])){echo "<div id = 'warning'>Add a Product before adding Orders/Purchases</div>";}?>
 <form action = "addProductProcess.php" method = "post">
-<div id = "formText">Product Name</div>
-<div id = "formInput"><input type = "text" name = "pName" <?php
+<div id = "formText">Name</div>
+<div id = "formInput"><input type = "text" name = "pName" id = "pName"<?php
 if (isset($_GET["pName"])){echo "value = '".$_GET["pName"]."'";}	//If input data is wrong, return to form with values//
 ?>/></div>
 <?php 
@@ -42,16 +43,21 @@ if(isset($_GET['eField'])){
 	echo "<div id = 'warning'>Product name cannot be empty</div>";
 }else if (isset($_GET["warning"])){echo "<div id = 'warning'>Same product name already existed</div>";
 } ?>
-<div id = "formText">Product Description</div>
-<div id = "formInput"><input type = "text" name = "pDesc" <?php
+<div id = "formText">Description</div>
+<div id = "formInput">
+  <textarea name="pDesc" rows="5" id="pDesc" <?php
+if (isset($_get["pdesc"])){echo "value = '".$_get["pdesc"]."'";}	//if input data is wrong, return to form with values//
+?>="<?php
 if (isset($_GET["pDesc"])){echo "value = '".$_GET["pDesc"]."'";}	//If input data is wrong, return to form with values//
-?>/></div>
-<div id = "formText">Product URL</div>
-<div id = "formInput"><input type = "text" name = "pUrl" <?php
+?>"></textarea>
+</div>
+<div id = "formText">URL</div>
+<div id = "formInput"><input type = "text" name = "pUrl" id = "pUrl"<?php
 if (isset($_GET["pUrl"])){echo "value = '".$_GET["pUrl"]."'";}	//If input data is wrong, return to form with values//
 ?>/></div>
 <div id = "submitBtn"><input type = "submit" /></div>
 </form>
 <div id = "backBtn"><a href = "index2.php">Back</a></div>
+</div>
 </body>
 </html>
