@@ -1,5 +1,5 @@
 <?php
-include ("connect.php");  //Addin from connect.php
+include ("connect.php");	//Addin from connect.php
 
 /*
 ************************************************************************
@@ -25,7 +25,7 @@ For any enquiries, contact Del via email at magnadel@hotmail.com, Jordon Koh at 
 checkLogin();	//Checking if User is logged in before continuing//
 
 if(empty($_POST["oCustomer"])||empty($_POST["oPrice"])||empty($_POST["oQuantity"])||typeCheck($_POST["oPrice"],'numeric',255)!=TRUE||typeCheck($_POST["oQuantity"],'numeric',255)!=TRUE){
-	header("location:editOrder.php?eField=1&dCustomerName=".$_POST["oCustomer"]."&dPrice=".$_POST["oPrice"]."&dQuantity=".$_POST["oQuantity"]."&dMisc=".$_POST["oMisc"]."&dRemarks=".$_POST["oRemarks"]."&dYear=".$_POST["oYear"]."&dMonth=".$_POST["oMonth"]."&dDay=".$_POST["oDay"]."&dProduct=".$_POST["oNumber"]."&oId=".$_POST["oId"]);
+	header("location:editOrder.php?eField=1&dCustomerName=".$_POST["oCustomer"]."&dPrice=".$_POST["oPrice"]."&dQuantity=".$_POST["oQuantity"]."&dMisc=".$_POST["oMisc"]."&dRemarks=".$_POST["oRemarks"]."&dYear=".$_POST["oYear"]."&dMonth=".$_POST["oMonth"]."&dDay=".$_POST["oDay"]."&dProduct=".$_POST["oNumber"]."&oId=".$_POST["oId"]); 
 }else{
 	//Receiving input from form//
 	$oOrderNo = $_POST["oId"];
