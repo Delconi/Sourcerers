@@ -1,5 +1,5 @@
 <?php
-session_start();  //Starting Session
+session_start();	//Starting Session
 
 /*
 ************************************************************************
@@ -48,8 +48,8 @@ function typeCheck($string, $type, $length){	//The type of variable can be bool,
 
 //Requirement to connec to DB//
 $host = "localhost";
-$username = ""; /////////////////////////////////////////////////////////Your username to db here
-$password = "d";  /////////////////////////////////////////////////////// Your password to db here
+$username = "photogen_guest";
+$password = "delconi";
 $databaseName = "photogen_osCommerce";
 $connect = mysqli_connect($host,$username,$password,$databaseName);
 								//Connect To Host
@@ -100,9 +100,7 @@ $purchaseTable = "ProductPurchase";
 	$puT_PurchasePrice = "pPrice";
 	$puT_PurchaseShippingPrice = "pShipping";
 	$puT_TotalPurchasePrice = "pTotalPurchase";
-	$puT_PurchaseSalesPrice = "pSalesPrice";
 	$puT_PurchaseRemarks = "pRemarks";
-	$puT_PurchaseTax = "pTax";
 //Columns availabe in Purchase Info Table//
 								
 if(!$connect) 
