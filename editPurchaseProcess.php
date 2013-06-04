@@ -25,8 +25,8 @@ For any enquiries, contact Del via email at magnadel@hotmail.com, Jordon Koh at 
 checkLogin();	//Checking if User is logged in before continuing//
 
 //Checking if any of the required field is empty//
-	if(empty($_POST["pManufacturer"])||empty($_POST["pPNo"])||empty($_POST ["pQuantity"])||empty($_POST["pSellPrice"])||typeCheck($_POST['pPrice'],'numeric',255)==FALSE||typeCheck($_POST['pQuantity'],'numeric',255)==FALSE||typeCheck($_POST['pSellPrice'],'numeric',255)==FALSE){
-		header("location:editPurchase.php?eField=1&dManu=".$_POST ["pManufacturer"]."&dPri=".$_POST["pPrice"]."&dQua=".$_POST ["pQuantity"]."&dShip=".$_POST["pShipping"]."&dTax=".$_POST["pTax"]."&dRem=".$_POST["pRemarks"]."&dDay=".$_POST["pDay"]."&dMon=".$_POST["pMonth"]."&dYear=".$_POST["pYear"]."&dNo=".$_POST ["pPNo"]."&pId=".$_POST["pId"]);
+	if(empty($_POST["pManufacturer"])||empty($_POST["pPNo"])||empty($_POST ["pQuantity"])||typeCheck($_POST['pPrice'],'numeric',255)==FALSE||typeCheck($_POST['pQuantity'],'numeric',255)==FALSE){
+		header("location:editPurchase.php?eField=1&dManu=".$_POST ["pManufacturer"]."&dPri=".$_POST["pPrice"]."&dQua=".$_POST ["pQuantity"]."&dShip=".$_POST["pShipping"]."&dRem=".$_POST["pRemarks"]."&dDay=".$_POST["pDay"]."&dMon=".$_POST["pMonth"]."&dYear=".$_POST["pYear"]."&dNo=".$_POST ["pPNo"]."&pId=".$_POST["pId"]);
 //Checking if any of the required field is empty//
 	}else{
 		//Receiving input from form//
@@ -40,9 +40,6 @@ checkLogin();	//Checking if User is logged in before continuing//
 			if(empty($_POST["pShipping"])||typeCheck($_POST['pShipping'],'numeric',255)==FALSE)
 			{$pShipping = 0;}else	//If no value is input for shipping, set to 0
 			{$pShipping = $_POST["pShipping"];}
-			if(empty($_POST["pTax"])||typeCheck($_POST['pTax'],'numeric',255)==FALSE)
-				{$pTax = 0;}else	//If no value is input for Tax, set to 0
-				{$pTax = $_POST["pTax"];}
 			$pTotalPrice = ($pPricePerPiece*$pQuantity+$pShipping)*(100+$pTax)/100;	//Calculating of total cost
 			$pRemarks = $_POST["pRemarks"];
 		//Receiving input from form//
@@ -63,7 +60,7 @@ checkLogin();	//Checking if User is logged in before continuing//
 			$updateQuery = "UPDATE $productTable SET $pT_ProductQuantity = $upDateQuantity WHERE $pT_ProductNumber = '$pProductNo' AND $pT_ProductUserName = '$sessionUserName'";	//Update Quantity of affected Product
 			$updateResult = mysqli_query($connect,$updateQuery);
 			
-			$updatePurchaseQuery = "UPDATE ".$purchaseTable." SET $puT_PurchaseDateInput = '$pDateInput', $puT_PurchaseManufacturer = '$pManufacturer', $puT_PurchaseDate =' $pDatePurchase', $puT_PurchaseQuantity = '$pQuantity', $puT_PurchasePrice = '$pPricePerPiece', $puT_PurchaseShippingPrice = '$pShipping', $puT_TotalPurchasePrice = '$pTotalPrice', $puT_PurchaseRemarks = '$pRemarks', $puT_PurchaseTax = '$pAx' WHERE $puT_PurchaseNumber = '$pId' AND  $puT_PurchaseUserName = '$sessionUserName'";	//Update Purchase detail with newly input ones
+			$updatePurchaseQuery = "UPDATE ".$purchaseTable." SET $puT_PurchaseDateInput = '$pDateInput', $puT_PurchaseManufacturer = '$pManufacturer', $puT_PurchaseDate =' $pDatePurchase', $puT_PurchaseQuantity = '$pQuantity', $puT_PurchasePrice = '$pPricePerPiece', $puT_PurchaseShippingPrice = '$pShipping', $puT_TotalPurchasePrice = '$pTotalPrice', $puT_PurchaseRemarks = '$pRemarks' WHERE $puT_PurchaseNumber = '$pId' AND  $puT_PurchaseUserName = '$sessionUserName'";	//Update Purchase detail with newly input ones
 			$updatePurchaseResult = mysqli_query($connect,$updatePurchaseQuery);
 		//IEditting the Quantity on the specific product affected//
 		
