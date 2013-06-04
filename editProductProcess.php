@@ -1,5 +1,5 @@
 <?php
-include ("connect.php");  //Addin from connect.php
+include ("connect.php");	//Addin from connect.php
 
 /*
 ************************************************************************
