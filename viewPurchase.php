@@ -37,6 +37,7 @@ For any enquiries, contact Del via email at magnadel@hotmail.com, Jordon Koh at 
 -->
 
 <body>
+<div id = "mainContent">
 <h1 id = "title">View all personal purchases</h1>
 
 <?php
@@ -49,17 +50,16 @@ if (isset($_GET["added"])){
 }		
 ?>
 <table>
-	<tr><b>
-        <td>Date of Purchase</td>
-        <td>Name</td>
-        <td>Supplier</td>
-        <td>Price Per Piece</td>
-        <td>Quantity Purchased</td>
-        <td>Shipping</td>
-        <td>Tax</td>
-        <td>Total Purchase Cost</td>
-        <td>Remarks</td>
-        </b>
+	<tr>
+        <td><b>Date</b></td>
+        <td><b>Name</b></td>
+        <td><b>Supplier</b></td>
+        <td><b>Price</b></td>
+        <td><b>Quantity</b></td>
+        <td><b>Shipping</b></td>
+        <td><b>Total</b></td>
+        <td><b>Remarks</b></td>
+        <td colspan = "2"><b>Option</b></td> 
     </tr>
     <?php
 	while($row = mysqli_fetch_assoc($result)){
@@ -78,7 +78,6 @@ if (isset($_GET["added"])){
 		echo "<td>".$row[$puT_PurchasePrice]."</td>";
 		echo "<td>".$row[$puT_PurchaseQuantity]."</td>";
 		echo "<td>".$row[$puT_PurchaseShippingPrice]."</td>";
-		echo "<td>".$row[$puT_PurchaseTax]."</td>";
 		echo "<td>".$row[$puT_TotalPurchasePrice]."</td>";
 		echo "<td>".$row[$puT_PurchaseRemarks]."</td>";
 		echo "<td><a href = 'editPurchase.php?pId=".$row[$puT_PurchaseNumber]."'>Edit</a></td>";	//Displaying of Edit Button
@@ -88,5 +87,6 @@ if (isset($_GET["added"])){
 	?>
 </table>
 <div id = "backBtn"><a href = "index2.php">Back</a></div>
+</div>
 </body>
 </html>
