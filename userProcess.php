@@ -2,7 +2,7 @@
 include ("connect.php");
 
 //Checking if Username / Password is empty//
-if(empty($_POST["uName"])&&strlen($_POST["uName"])<=4){  //If username is less than 4 characters
+if(empty($_POST["uName"])&&strlen($_POST["uName"])<=4){	//If username is less than 4 characters
 	header("location:index.php?emptyField=1&previousUser=".$_POST["uName"]);	
 	
 }else if(empty($_POST["uPass"])&&strlen($_POST["uPass"])<=8||$_POST["uPass"]=="Password"){	//If password is less than 8 characters
