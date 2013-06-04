@@ -1,4 +1,4 @@
-<?php include ("connect.php");  //Addin from connect.php
+<?php include ("connect.php");	//Addin from connect.php
 checkLogin();	//Checking if User is logged in before continuing//?>
 <html>
 <head>
@@ -42,7 +42,7 @@ $oRow = mysqli_fetch_assoc($oResult);
 <form action = "editOrderProcess.php" method = "post">
 <input name="oId" type="hidden" value="<?php echo $oId;?>" />
 <div id = "formText">Date of Input</div>
-<div id = "formInput"><input name = "oDateOfInput" type = "text" value="<?php echo date('Y-m-d');	//Display Current Date
+<div id = "formInput"><input id = "oDateOfInput" name = "oDateOfInput" type = "text" value="<?php echo date('Y-m-d');	//Display Current Date
 ?>" readonly="readonly" /></div>
 <div id = "formText">Date of Order</div>
 <div id = "formSelectInput"><select name="oDay" id="oDay">
@@ -88,7 +88,7 @@ $oRow = mysqli_fetch_assoc($oResult);
     </select></div>
     
 <div id = "formText">Customer Name</div>
-<div id = "formInput"><input type = "text" name = "oCustomer" value ="<?php 
+<div id = "formInput"><input id = "oCustomer" type = "text" name = "oCustomer" value ="<?php 
 if (!empty($_GET['dCustomerName'])||$_GET['eField']==1){
 	echo $_GET['dCustomerName'];
 	}else {
@@ -113,33 +113,36 @@ if (!empty($_GET['dCustomerName'])||$_GET['eField']==1){
   </select></div>
 
 <div id = "formText">Price Per Piece ($)</div>
-<div id = "formInput"><input type = "text" name = "oPrice" value ="<?php 
+<div id = "formInput"><input id = "oPrice" type = "text" name = "oPrice" value ="<?php 
 if (!empty($_GET['dPrice'])||$_GET['eField']==1){
 	echo $_GET['dPrice'];
 	}else {
 		echo $oRow[$oT_OrderPrice];
 	}?>"/></div>
 <div id = "formText">Quantity Order</div>
-<div id = "formInput"><input type = "text" name = "oQuantity" value ="<?php 
+<div id = "formInput"><input id = "oQuantity" type = "text" name = "oQuantity" value ="<?php 
 if (!empty($_GET['dQuantity'])||$_GET['eField']==1){
 	echo $_GET['dQuantity'];
 	}else {
 		echo $oRow[$oT_OrderQuantity];
 	}?>"/></div>
 <div id = "formText">Misc Cost (Optional)</div>
-<div id = "formInput"><input name = "oMisc" type = "text" value ="<?php 
+<div id = "formInput"><input id = "oMisc" name = "oMisc" type = "text" value ="<?php 
 if (!empty($_GET['dMisc'])||$_GET['eField']==1){
 	echo $_GET['dMisc'];
 	}else{
 		echo $oRow[$oT_OrderMisc];
 	}?>" /></div>
-<div id = "formText">Order Remarks (Optional)</div>
-<div id = "formInput"><input type = "text" name = "oRemarks" value ="<?php 
+<div id = "formText">Remarks (Optional)</div>
+<div id = "formInput">
+  <textarea name="oRemarks" rows="4" id="oRemarks"><?php 
 if (!empty($_GET['dRemarks'])||$_GET['eField']==1){
 	echo $_GET['dRemarks'];
 	}else{
 		echo $oRow[$oT_OrderRemarks];
-	}?>"/></div>
+	}?>
+  </textarea>
+</div>
 <div id = "submitBtn"><input type = "submit" /></div>
 <?php if($_GET['eField']==1){
 	echo "<div id = 'warning'>One of more of the required field is empty / wrong type of value entered.</div>";
