@@ -1,4 +1,4 @@
-<?php include("connect.php");  //Addin from connect.php
+<?php include("connect.php");	//Addin from connect.php
 checkLogin(); //Checking if User is logged in before continuing//?>
 <html>
 <head>
@@ -29,6 +29,7 @@ For any enquiries, contact Del via email at magnadel@hotmail.com, Jordon Koh at 
 -->
 
 <body>
+<div id = "mainContent">
 <h1 id = "title">Edit product component/product</h1>
 <?php 
 $pId = $_GET['pId'];
@@ -42,24 +43,28 @@ $pRow = mysqli_fetch_assoc($pResult);
 <form action = "editProductProcess.php" method = "post">
 <input name="pId" type="hidden" value="<?php echo $pId;?>" />
 <div id = "formText">Product Name</div>
-<div id = "formInput"><input type = "text" name = "pName" value = "<?php
+<div id = "formInput"><input type = "text" id = "pName" name = "pName" value = "<?php
 	if (isset($_GET["pName"])||isset($_GET["warning"])){echo $_GET["pName"]."'";}else {echo $pRow[$pT_ProductName];}
 ?>"/></div>
 <div id = "formText">Product Description</div>
-<div id = "formInput"><input type = "text" name = "pDesc" value = "<?php
+<div id = "formInput">
+  <textarea name="pDesc" rows="5" id="pDesc"><?php
 	if (isset($_GET["pDesc"])||isset($_GET["warning"])){echo $_GET["pDesc"]."'";}else {echo $pRow[$pT_ProductDescription];}
-?>"/></div>
+?>
+  </textarea>
+</div>
 <div id = "formText">Product URL</div>
-<div id = "formInput"><input type = "text" name = "pUrl" value = "<?php
+<div id = "formInput"><input type = "text" id = "pUrl" name = "pUrl" value = "<?php
 	if (isset($_GET["pUrl"])||isset($_GET["warning"])){echo $_GET["pUrl"]."'";}else {echo $pRow[$pT_ProductUrl];}
 ?>"/></div>
 <div id = "formText">Product Quantity</div>
-<div id = "formInput"><input type = "text" name = "pStock" value = "<?php
+<div id = "formInput"><input type = "text" id = "pStock" name = "pStock" value = "<?php
 	if (isset($_GET["pStock"])||isset($_GET["warning"])){echo $_GET["Stock"]."'";}else {echo $pRow[$pT_ProductQuantity];}
 ?>"/></div>
 <?php if (isset($_GET["warning"])){echo "<div id = 'warning'>Product name cannot be empty.</div>";} ?>
 <div id = "submitBtn"><input type = "submit" /></div>
 </form>
 <div id = "backBtn"><a href = "index2.php">Back</a></div>
+</div>
 </body>
 </html>
