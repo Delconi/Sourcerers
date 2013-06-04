@@ -1,5 +1,5 @@
 <?php
-include ("connect.php");  //Addin from connect.php
+include ("connect.php");	//Addin from connect.php
 
 /*
 ************************************************************************
@@ -23,11 +23,11 @@ For any enquiries, contact Del via email at magnadel@hotmail.com, Jordon Koh at 
 */
 
 checkLogin();	//Checking if User is logged in before continuing//
-$reDirect = "location:addOrder.php?eField=1&dManu=".$_POST ["pManufacturer"]."&dPri=".$_POST["pPrice"]."&dQua=".$_POST ["pQuantity"]."&dShip=".$_POST["pShipping"]."&dTax=".$_POST["pTax"]."&dSell=".$_POST["pSellPrice"]."&dRem=".$_POST["pRemarks"]."&dDay=".$_POST["pDay"]."&dMon=".$_POST["pMonth"]."&dYear=".$_POST["pYear"]."&dNo=".$_POST ["pPNo"]."&dMisc=".$_POST["oMisc"];
+$reDirect = "location:addOrder.php?eField=1&dPri=".$_POST["oPrice"]."&dQua=".$_POST ["oQuantity"]."&dRem=".$_POST["oRemarks"]."&dDay=".$_POST["oDay"]."&dMonth=".$_POST["oMonth"]."&dYear=".$_POST["oYear"]."&dNo=".$_POST["oNumber"]."&dMisc=".$_POST["oMisc"]."&dCustomerName=".$_POST["oCustomer"];
 
-if(empty($_POST ["oNumber"])){
+if(empty($_POST["oNumber"])){
 	header($reDirect.'&ePro=1');
-	}else if(empty($_POST["oCustomer"])||empty($_POST["oPrice"])||empty($_POST["oMisc"])||empty($_POST["oNumber"])||empty($_POST["oQuantity"])||typeCheck($_POST["oPrice"],'numeric',255)!=TRUE||typeCheck($_POST["oQuantity"],'numeric',255)!=TRUE){
+	}else if(empty($_POST["oCustomer"])||empty($_POST["oPrice"])||empty($_POST["oMisc"])||empty($_POST["oQuantity"])||typeCheck($_POST["oPrice"],'numeric',255)==FALSE||typeCheck($_POST["oQuantity"],'numeric',255)==FALSE){
 	header($reDirect);
 }else{
 	//Receiving input from form//
