@@ -28,7 +28,29 @@ A copy of the GNU General Public License is enclosed.
 For any enquiries, contact Del via email at magnadel@hotmail.com, Jordon Koh at jordonkoh@hotmail.com, or Low Guan Hong at grapefood@hotmail.com
 -->
 
+<script type="text/javascript">
+document.onkeyup=updateTotal;
+
+function doRound(x, places) {
+  return Math.round(x * Math.pow(10, places)) / Math.pow(10, places);
+}
+
+function updateTotal() {
+	if(document.getElementById('pPrice').value!=""&&document.getElementById('pQuantity').value!=""&&document.getElementById('pTax').value!=""&&document.getElementById('pShipping').value!=""){
+  var pppValue = parseInt(document.getElementById('pPrice').value);
+  var pqtyValue = parseInt(document.getElementById('pQuantity').value);
+  var pshipValue = parseInt(document.getElementById('pShipping').value);
+  var taxValue = parseInt(document.getElementById('pTax').value);
+   
+  var totalValue = parseInt((pppValue * pqtyValue) + pshipValue)*((taxValue+100)/100);
+
+  document.getElementById('pTotal').value = doRound(totalValue, 2);
+	}
+}
+</script>
+
 <body>
+<div id = "mainContent">
 <h1 id = "title">Edit personal purchase</h1>
 <?php 
 $pId = $_GET['pId'];
@@ -44,7 +66,7 @@ $uId = $_SESSION['userNo'];
 <form action = "editPurchaseProcess.php" method = "post">
 <input name="pId" type="hidden" value="<?php echo $pId;?>" />
 <div id = "formText">Date of Input</div>
-<div id = "formInput"><input name = "pDateOfInput" type = "text" value="<?php echo date('Y-m-d');	//Displaying current date
+<div id = "formInput"><input id = "pDateOfInput" name = "pDateOfInput" type = "text" value="<?php echo date('Y-m-d');	//Displaying current date
 ?>" readonly="readonly" /></div>
 <div id = "formText">Date of Purchase</div>
 <div id = "formSelectInput"><select name="pDay" id="pDay">
@@ -90,14 +112,14 @@ $uId = $_SESSION['userNo'];
     </select></div>
 
 <div id = "formText">Product Manufacturer</div>
-<div id = "formInput"><input type = "text" name = "pManufacturer" value ="<?php 
+<div id = "formInput"><input id = "pManufacturer" type = "text" name = "pManufacturer" value ="<?php 
 if (!empty($_GET['dManu'])||$_GET['eField']==1){
 	echo $_GET['dManu'];
 	}else{
 		echo $pRow[$puT_PurchaseManufacturer];
 	}?>"/></div>
 <div id = "formText">Product</div>
-<div id = "formSelectInput"><select name="pPNo" id="oNumber">
+<div id = "formSelectInput"><select name="pPNo" id="pPNo">
 <?php
 //Displaying of Product Available//
 	$sessionUserName = $_SESSION['userNo'];	
@@ -114,7 +136,7 @@ if (!empty($_GET['dManu'])||$_GET['eField']==1){
   </select></div>
 
 <div id = "formText">Price Per Piece ($)</div>
-<div id = "formInput"><input type = "text" name = "pPrice" value ="<?php 
+<div id = "formInput"><input id = "pPrice" type = "text" name = "pPrice" value ="<?php 
 //Displaying Value either from reset or from previously input//
 if (!empty($_GET['dPri'])||$_GET['eField']==1){
 	echo $_GET['dPri'];
@@ -122,7 +144,7 @@ if (!empty($_GET['dPri'])||$_GET['eField']==1){
 		echo $pRow[$puT_PurchasePrice];
 	}?>"/></div>
 <div id = "formText">Quantity Purchase</div>
-<div id = "formInput"><input type = "text" name = "pQuantity" value ="<?php 
+<div id = "formInput"><input id = "pQuantity" type = "text" name = "pQuantity" value ="<?php 
 //Displaying Value either from reset or from previously input//
 if (!empty($_GET['dQua'])||$_GET['eField']==1){
 	echo $_GET['dQua'];
@@ -130,29 +152,29 @@ if (!empty($_GET['dQua'])||$_GET['eField']==1){
 		echo $pRow[$puT_PurchaseQuantity];
 	}?>"/></div>
 <div id = "formText">Shipping Cost ($)</div>
-<div id = "formInput"><input name = "pShipping" type = "text" value ="<?php 
+<div id = "formInput"><input id = "pShipping" name = "pShipping" type = "text" value ="<?php 
 //Displaying Value either from reset or from previously input//
 if (!empty($_GET['dShip'])||$_GET['eField']==1){
 	echo $_GET['dShip'];
 	}else{
 		echo $pRow[$puT_PurchaseShippingPrice];
 	}?>" /></div>
-<div id = "formText">Tax (%)</div>
-<div id = "formInput"><input name = "pTax" type = "text" value ="<?php 
-//Displaying Value either from reset or from previously input//
-if (!empty($_GET['dTax'])||$_GET['eField']==1){
-	echo $_GET['dTax'];
-	}else{
-		echo $pRow[$puT_PurchaseTax];
-	}?>" /></div>
+<div id = "formText">Total Cost</div>
+<div id = "formInput"><input id = "pTotal" type = "text" value = "<?php 
+if (!empty($_GET['dTotal'])){
+	echo $_GET['dTotal'];
+	}?>" readonly="readonly"></div>
 <div id = "formText">Product Remarks (Optional)</div>
-<div id = "formInput"><input type = "text" name = "pRemarks" value ="<?php 
+<div id = "formInput">
+  <textarea name="pRemarks" rows="4" id="pRemarks"><?php 
 //Displaying Value either from reset or from previously input//
 if (!empty($_GET['dRem'])||$_GET['eField']==1){
 	echo $_GET['dRem'];
 	}else{
 		echo $pRow[$puT_PurchaseRemarks];
-	}?>"/></div>
+	}?>
+  </textarea>
+</div>
 <?php 
 //Displaying Warning if the field requirement is not satisfy//
 if($_GET['eField']==1){
@@ -161,5 +183,6 @@ if($_GET['eField']==1){
 <input type = "submit" />
 </form>
 <div id = "backBtn"><a href = "index2.php">Back</a></div>
+</div>
 </body>
 </html>
