@@ -44,17 +44,18 @@ function updateTotal() {
    
   var totalValue = parseInt((pppValue * pqtyValue) + pshipValue)*((taxValue+100)/100);
 
-  document.getElementById('pTotal').value = doRound(totalValue, 4);
+  document.getElementById('pTotal').value = doRound(totalValue, 2);
 	}
 }
 </script>
 
 <body>
+<div id = "mainContent">
 <h1 id = "title">Add a personal purchase</h1>
 
 <form action = "addPurchaseProcess.php" method = "post">
 <div id = "formText">Date of Input</div>
-<div id = "formInput"><input name = "pDateOfInput" type = "text" value="<?php echo date('Y-m-d');	//Displaying current date
+<div id = "formInput"><input id = "pDateOfInput" name = "pDateOfInput" type = "text" value="<?php echo date('Y-m-d');	//Displaying current date
 ?>" readonly="readonly" /></div>
 <div id = "formText">Date of Purchase</div>
 <div id = "formSelectInput"><select name="pDay" id="pDay">
@@ -107,12 +108,12 @@ function updateTotal() {
     </select></div>
 
 <div id = "formText">Product Manufacturer</div>
-<div id = "formInput"><input type = "text" name = "pManufacturer" value ="<?php 
+<div id = "formInput"><input id = "pManufacturer" type = "text" name = "pManufacturer" value ="<?php 
 if (!empty($_GET['dManu'])){
 	echo $_GET['dManu'];
 	}?>"/></div>
 <div id = "formText">Product</div>
-<div id = "formSelectInput"><select name="pPNo" id="pName">
+<div id = "formSelectInput"><select name="pPNo" id="pPNo">
     <?php
 		//Grabbing Product Name from database that is available to current user//
 		$sessionUserName = $_SESSION['userNo'];
@@ -147,23 +148,25 @@ if (!empty($_GET['dQua'])){
 if (!empty($_GET['dShip'])){
 	echo $_GET['dShip'];
 	}else{echo "0";}?>" /></div>
-<div id = "formText">Tax (%)</div>
-<div id = "formInput"><input id = 'pTax' name = "pTax" type = "text" value ="<?php 
-if (!empty($_GET['dTax'])){
-	echo $_GET['dTax'];
-	}else{echo "0";}?>" /></div>
 <div id = "formText">Total Cost</div>
-<div id = "formInput"><input id = "pTotal" type = "text" value = "" readonly="readonly"></div>
-<div id = "formText">Product Remarks (Optional)</div>
-<div id = "formInput"><input type = "text" name = "pRemarks" value ="<?php 
+<div id = "formInput"><input id = "pTotal" type = "text" value = "<?php 
+if (!empty($_GET['dTotal'])){
+	echo $_GET['dTotal'];
+	}?>" readonly="readonly"></div>
+<div id = "formText">Remarks (Optional)</div>
+<div id = "formInput">
+  <textarea name="pRemarks" rows="4" id="pRemarks"><?php 
 if (!empty($_GET['dRem'])){
 	echo $_GET['dRem'];
-	}?>"/></div>
+	}?>
+  </textarea>
+</div>
 <?php if($_GET['eField']==1){
-	echo "<div id = 'warning'>One of more of the required field is empty / wrong type of value entered./div>";
+	echo "<div id = 'warning'>One of more of the required field is empty / wrong type of value entered.</div>";
 	}?>
 <input type = "submit" />
 </form>
 <div id = "backBtn"><a href = "index2.php">Back</a></div>
+</div>
 </body>
 </html>
